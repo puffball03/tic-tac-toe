@@ -11,26 +11,26 @@ class Board:
     def _in_range(self, row, col):
         return 0 <= row < self._size and 0 <= col < self._size
 
-    def _is_empty(self, row, col):
+    def is_empty(self, row, col):
         if self._in_range(row, col) and self._grid[row][col] == EMPTY:
             return True
         else:
             return False
 
     def place_mark(self, row: int, col: int, mark: str) -> bool:
-        if self._in_range(row, col) and self._is_empty(row, col):
+        if self._in_range(row, col) and self.is_empty(row, col):
             self._grid[row][col] = mark
             return True
         else:
             return False
-    def remove_mark(row: int, col: int) -> None:
-        pass
-        #TODO this
-    
-    def has_won(mark: str) -> bool:
+    def remove_mark(self, row: int, col: int) -> None:
+        if self._in_range(row, col) and not self.is_empty(row, col):
+            self._grid[row][col] = EMPTY
+            
+    def has_won(self, mark: str) -> bool:
         pass
 
-    def is_full() -> bool:
+    def is_full(self) -> bool:
         pass
     
     def __str__(self):

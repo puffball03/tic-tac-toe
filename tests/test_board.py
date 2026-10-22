@@ -14,3 +14,9 @@ def test_illegal_mark_on_non_empty_space():
     board = Board(3)
     board.place_mark(1, 1, "O")
     assert board.place_mark(1, 1, "X") == False
+
+def test_remove_mark_on_non_empty_space():
+    board = Board(3)
+    board.place_mark(1, 1, "O")
+    board.remove_mark(1,1)
+    assert board.is_empty(1,1) == True
