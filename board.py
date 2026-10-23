@@ -28,7 +28,14 @@ class Board:
             self._grid[row][col] = EMPTY
             
     def has_won(self, mark: str) -> bool:
-        pass
+        #Check Vertical
+        for i in range(self._size):
+            won = all(item == mark for item in self._grid[i])
+            if won == True:
+                return won
+            
+        #Check Horizontal
+        #Check Diagonals
 
     def is_full(self) -> bool:
         pass
