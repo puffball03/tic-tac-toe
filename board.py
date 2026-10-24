@@ -28,17 +28,25 @@ class Board:
             self._grid[row][col] = EMPTY
             
     def has_won(self, mark: str) -> bool:
-        #Check Vertical
-        for i in range(self._size):
-            won = all(item == mark for item in self._grid[i])
-            if won == True:
-                return won
-            
-        #Check Horizontal
+        #Rows
+        for row in self._grid:
+            if all(i == mark for i in row):
+                return True
+        #Columns
+        for col in zip(*self._grid):
+            if all(i == mark for i in col):
+                return True
         #Check Diagonals
+        if all(self._grid[i][i] == mark for i in range(self.size)):
+            return True
+        if all(self._grid[i][self.size - i - 1] == mark for i in range(self.size)):
+            return True
+        #No wincon. Return False. LOSER!
+        return False
 
     def is_full(self) -> bool:
-        pass
+        return all(i == "X" or i == "O" for row in self._grid for i in row)
+                
     
     def __str__(self):
         separator = "-+-".join("-" * self._size)
