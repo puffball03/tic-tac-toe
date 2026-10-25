@@ -1,16 +1,7 @@
-"""
-
-Goal. Two sentences on what the game is and who plays it.
-Requirements. A table with an ID, the requirement, and how you will verify it. Write at least 6. Each must be testable. "The AI should be smart" is not. "Hard never loses on 3x3 when it plays second" is.
-Components. Each class or file, with one sentence on its single responsibility.
-Decisions. At least 2 decisions, each with the options you considered, what you chose, and why.
-"""
-
-
 ### Tic Tac Toe Game
 
 ## Goal
-This will be a Python implementation of a Tic Tac Toe game featuring PvP and PvAI gamemodes. The project will be implemented through TDD with pydantic.
+This will be a Python implementation of a Tic Tac Toe game featuring PvP and PvAI gamemodes. The project will be implemented through TDD with pytest.
 ## Requirements
 Type | What it describes |
 Functional | The player is prompted to select between PvP or PvE mode | Must
