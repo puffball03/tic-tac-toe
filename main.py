@@ -1,6 +1,5 @@
 from board import Board
 from game import Game
-from random import randint
 
 TITLE = r"""
        ____________________________________________________________
@@ -24,7 +23,6 @@ TITLE = r"""
 _ = input(TITLE)
 while True:
     player1 = input("Type X or O to begin!\nInput: ")
-    print(player1)
     if player1 != "X" and player1 != "O":
         print("You may only select X or O. Try again\n")
         continue
