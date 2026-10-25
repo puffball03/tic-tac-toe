@@ -68,4 +68,14 @@ def test_if_board_is_not_full():
         (2,0),(2,1)], mark="X")
     assert board.is_full() == False
 
+def test_if_board_is_empty():
+    board = Board(3)
+    any_cell_has_a_tile = False
+    for i in range(3):
+        for j in range(3):
+            if board.is_empty(i, j) == False:
+                any_cell_has_a_tile = True
+    assert any_cell_has_a_tile == False
+
+
 
