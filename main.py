@@ -36,20 +36,21 @@ while True:
     print(f"\nIt is {game.turn}'s turn to move!")
     game.display_board()
     try:
-        row = int(input("Enter the row number (1-3) where you would like to place your mark\nInput: ")) - 1
-        col = int(input("Enter the column number (1-3) where you would like to place your mark\nInput: ")) - 1
+        row, col = (int(x) - 1 for x in input("Enter the row(1-3), a space, then the column(1-3) where you would like to place your mark\nInput: ").split())
     except:
         print("You've typed an invalid move. Try again!\n")
         continue
     if game.play_move(row, col, game.turn):
-        if game.is_game_tied():
-            game.display_board()
-            print("Cats Game! No one wins...")
-            break
+
         if game.has_won(game.turn):
             game.display_board()
             print(f"{game.turn} has won the game!")
             break
+        if game.is_game_tied():
+            game.display_board()
+            print("Cats Game! No one wins...")
+            break
+
         game.switch_turns()
     else:
         print("\nYou've typed an invalid move. Try again!")

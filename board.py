@@ -16,6 +16,13 @@ class Board:
             return True
         else:
             return False
+    def empty_cells(self):
+        res = []
+        for row in range(self._size):
+            for col in range(self._size):
+                if self._grid[row][col] == EMPTY:
+                    res.append((row, col))
+                
 
     def place_mark(self, row: int, col: int, mark: str) -> bool:
         if self._in_range(row, col) and self.is_empty(row, col):

@@ -23,6 +23,7 @@ class Game:
         return self.board.has_won(player)
 
     def display_board(self):
+        #This is technically a print outside of the main.py, but it cleans up the main code.
         print(self.board)
 
     def is_game_over(self, player):
