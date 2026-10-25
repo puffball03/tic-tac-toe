@@ -1,5 +1,6 @@
 from board import Board
 from game import Game
+from ai import EasyAI, HardAI
 
 TITLE = r"""
        ____________________________________________________________
@@ -20,39 +21,52 @@ TITLE = r"""
           >>>  P R E S S   E N T E R   T O   P L A Y  <<<
 """
 
+
 _ = input(TITLE)
-while True:
-    player1 = input("Type X or O to begin!\nInput: ")
-    if player1 != "X" and player1 != "O":
-        print("You may only select X or O. Try again\n")
-        continue
-    player2 = "X" if player1 == "O" else "O"
-    break
-game = Game(player1, player2)
+
+level = 0
+
+def choose_opponents():
+    while True:
+        mode = input("Type 1 for pvp mode, and 2 for vs AI\nInput: ")
+        if mode == "1":
+            return None
+        if mode == "2":
+            level = input("Which difficulty level would you like to play against? (Easy/Hard)\nInput: ").strip().lower()
+            if level == "hard":
+                return HardAI()
+            else:
+                return EasyAI() 
+
+game = Game("X", "O", ai_player = choose_opponents())
 
 while True:
     print(f"\nIt is {game.turn}'s turn to move!")
-    game.display_board()
-    try:
-        row, col = (int(x) - 1 for x in input("Enter the row(1-3), a space, then the column(1-3) where you would like to place your mark\nInput: ").split())
-    except:
-        print("You've typed an invalid move. Try again!\n")
-        continue
-    if game.play_move(row, col, game.turn):
-
-        if game.has_won(game.turn):
-            game.display_board()
-            print(f"{game.turn} has won the game!")
-            break
-        if game.is_game_tied():
-            game.display_board()
-            print("Cats Game! No one wins...")
-            break
-
-        game.switch_turns()
+    print(game.board)
+    mark = game.turn
+    if game.is_ai_turn():
+        game.play_ai_move()
+        print(f"\nAI {mark} moved")
     else:
-        print("\nYou've typed an invalid move. Try again!")
-        continue
+        try:
+            row, col = (int(x) - 1 for x in input("Enter the row(1-3), a space, then the column(1-3) where you would like to place your mark\nInput: ").split())
+        except ValueError:
+            print("You've typed an invalid move. Try again!\n")
+            continue
+        if not game.play_move(row, col, mark):
+            print("Illegal move. Please try again.")
+            continue
 
-    
+    if game.has_won(mark):
+        print(game.board)
+        print(f"{mark} has won the game!")
+        break
+    if game.is_game_tied():
+        print(game.board)
+        print("Cats Game! No one wins...")
+        break
+
+    game.switch_turns()
+
+
 
