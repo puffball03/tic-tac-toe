@@ -1,7 +1,7 @@
 from board import Board
-
+from ai import EasyAI
 class Game:
-    def __init__(self, player1, player2):
+    def __init__(self, player1, player2, ai_player=None):
         self.player1 = player1
         self.player2 = player2
         self.board = Board(3)
@@ -9,6 +9,7 @@ class Game:
     
     def play_move(self, row, col, player):
         return self.board.place_mark(row, col, player)
+    
     def switch_turns(self):
         if self._turn == self.player1:
             self._turn = self.player2
@@ -20,6 +21,14 @@ class Game:
 
     def has_won(self, player):
         return self.board.has_won(player)
+
+    def score(self):
+        if board.has_won(self.player1):
+            return 10
+        elif board.has_won(self.player2):
+            return -10
+        else:
+            return 0
 
     def display_board(self):
         #This is technically a print outside of the main.py, but it cleans up the main code.

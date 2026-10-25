@@ -22,12 +22,16 @@ TITLE = r"""
 
 _ = input(TITLE)
 while True:
-    player1 = input("Type X or O to begin!\nInput: ")
-    if player1 != "X" and player1 != "O":
-        print("You may only select X or O. Try again\n")
+    mode = input("Type 1 for pvp mode, and 2 for vs AI")
+    try: 
+        mode = int(mode)
+    except:
+        print("Invalid Input Detected. Try again")
         continue
-    player2 = "X" if player1 == "O" else "O"
+    if mode != 1 and mode != 2:
+        print("Invalid Input Detected. Try again")    
     break
+    
 game = Game(player1, player2)
 
 while True:

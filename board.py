@@ -22,6 +22,7 @@ class Board:
             for col in range(self._size):
                 if self._grid[row][col] == EMPTY:
                     res.append((row, col))
+        return res
                 
 
     def place_mark(self, row: int, col: int, mark: str) -> bool:
@@ -33,6 +34,8 @@ class Board:
     def remove_mark(self, row: int, col: int) -> None:
         if self._in_range(row, col) and not self.is_empty(row, col):
             self._grid[row][col] = EMPTY
+
+            
 
     def has_won(self, mark: str) -> bool:
         #Rows
