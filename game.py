@@ -6,6 +6,14 @@ class Game:
         self.player2 = player2
         self.board = Board(3)
         self._turn = self.player1 if self.player1 == "X" else self.player2
+        self.ai_player = ai_player
+
+    def is_ai_turn(self):
+        return self.ai_player is not None and self._turn == player2
+    
+    def play_ai_move(self):
+        row, col = self.ai_player.choose_move(self.board, self._turn)
+        return self.play_move(row, col, self._turn)
     
     def play_move(self, row, col, player):
         return self.board.place_mark(row, col, player)
