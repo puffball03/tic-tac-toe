@@ -24,7 +24,10 @@ class Board:
                     res.append((row, col))
         return res
                 
-
+    def copy(self):
+        new_board = Board(self._size)
+        new_board._grid = [row[:] for row in self._grid]
+        return new_board
     def place_mark(self, row: int, col: int, mark: str) -> bool:
         if self._in_range(row, col) and self.is_empty(row, col):
             self._grid[row][col] = mark

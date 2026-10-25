@@ -1,6 +1,6 @@
 from board import Board
 from game import Game
-from ai import EasyAI, HardAI
+from ai import EasyAI, MediumAI, HardAI
 
 TITLE = r"""
        ____________________________________________________________
@@ -33,7 +33,12 @@ def choose_opponents():
             return None
         if mode == "2":
             level = input("Which difficulty level would you like to play against? (Easy, Medium, Hard)\nInput: ").strip().lower()
-            return HardAI() if level == "hard" else EasyAI()
+            if level == "hard":
+                return HardAI()
+            elif level == "medium":
+                return MediumAI()
+            else:
+                return EasyAI() 
 
 game = Game("X", "O", ai_player = choose_opponents())
 
