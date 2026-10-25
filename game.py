@@ -9,7 +9,7 @@ class Game:
         self.ai_player = ai_player
 
     def is_ai_turn(self):
-        return self.ai_player is not None and self._turn == player2
+        return self.ai_player is not None and self._turn == self.player2
     
     def play_ai_move(self):
         row, col = self.ai_player.choose_move(self.board, self._turn)
@@ -31,9 +31,9 @@ class Game:
         return self.board.has_won(player)
 
     def score(self):
-        if board.has_won(self.player1):
+        if self.board.has_won(self.player1):
             return 10
-        elif board.has_won(self.player2):
+        elif self.board.has_won(self.player2):
             return -10
         else:
             return 0
