@@ -22,25 +22,37 @@ TITLE = r"""
 """
 
 _ = input(TITLE)
-player1 = input("Type X or O to begin!\nInput: ")
-player2 = "X" if player1 == "O" else "O"
+while True:
+    player1 = input("Type X or O to begin!\nInput: ")
+    print(player1)
+    if player1 != "X" and player1 != "O":
+        print("You may only select X or O. Try again\n")
+        continue
+    player2 = "X" if player1 == "O" else "O"
+    break
 game = Game(player1, player2)
 
 while True:
-    print(f"It is {game.turn}'s turn to move!")
+    print(f"\nIt is {game.turn}'s turn to move!")
     game.display_board()
     try:
-        row = int(input("Enter the row number where you would like to place your mark"))
-        col = int(input("Enter the column number where you would like to place your mark"))
+        row = int(input("Enter the row number (1-3) where you would like to place your mark\nInput: ")) - 1
+        col = int(input("Enter the column number (1-3) where you would like to place your mark\nInput: ")) - 1
     except:
+        print("You've typed an invalid move. Try again!\n")
         continue
     if game.play_move(row, col, game.turn):
+        if game.is_game_tied():
+            game.display_board()
+            print("Cats Game! No one wins...")
+            break
         if game.has_won(game.turn):
+            game.display_board()
             print(f"{game.turn} has won the game!")
             break
         game.switch_turns()
     else:
-        print("You've typed an invalid move. Try again!")
+        print("\nYou've typed an invalid move. Try again!")
         continue
 
     

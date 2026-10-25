@@ -6,7 +6,7 @@ class Game:
         self.player1 = player1
         self.player2 = player2
         self.board = Board(3)
-        self._turn = self.player1 if randint(0,1) == 0 else self.player2
+        self._turn = self.player1 if self.player1 == "X" else self.player2
     
     def play_move(self, row, col, player):
         return self.board.place_mark(row, col, player)
@@ -24,5 +24,8 @@ class Game:
 
     def display_board(self):
         print(self.board)
+
     def is_game_over(self, player):
-        return board.has_won(player)
+        return self.board.has_won(player)
+    def is_game_tied(self):
+        return self.board.is_full()

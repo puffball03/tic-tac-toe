@@ -31,7 +31,7 @@ def test_remove_mark_on_non_empty_space():
 
 def test_player_has_won_horizontal():
     board = setup_board([(1, 0),(1,1), (1,2)], mark="X")
-    assert board.has_won("O") == True
+    assert board.has_won("X") == True
 
 def test_player_has_lost_horizontal():
     board = setup_board([(1, 0),(1,1), (1,2)], mark="X")
@@ -44,6 +44,14 @@ def test_player_has_won_vertical():
 def test_player_has_lost_vertical():
     board = setup_board([(0,0),(0,1),(0,2)], mark="X")
     assert board.has_won("O") == False
+
+def test_player_has_won_diagonal_l2r():
+    board = setup_board([(0,0),(1,1),(2,2)], mark="X")
+    assert board.has_won("X") == True
+
+def test_player_has_won_diagonal_r2l():
+    board = setup_board([(0,2),(1,1),(2,0)], mark="X")
+    assert board.has_won("X") == True
 
 def test_if_board_is_full():
     board = setup_board([

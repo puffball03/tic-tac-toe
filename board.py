@@ -26,11 +26,7 @@ class Board:
     def remove_mark(self, row: int, col: int) -> None:
         if self._in_range(row, col) and not self.is_empty(row, col):
             self._grid[row][col] = EMPTY
-    def translate_move(pos: int) -> list:
-        x = y = 0
-        for i in range(pos):
-            if i % 3:
-                y += 1
+
     def has_won(self, mark: str) -> bool:
         #Rows
         for row in self._grid:
