@@ -9,7 +9,7 @@ def test_abstract_cant_be_created():
         ai = AIPlayer()
 
 def test_easy_returns_empty():
-    ai = EasyAI(rng=random.seed(42))
+    ai = EasyAI(rng=random.Random(42))
     board = Board(3)
     board.place_mark(0, 0, "O")
     board.place_mark(1, 1, "O")
@@ -32,11 +32,13 @@ def test_choose_move_doesnt_fill_space_hard():
     ai.choose_move(board, "O")
     assert before == str(board)
 def test_choose_move_doesnt_fill_space_easy():
-    ai = EasyAI()
+    ai = EasyAI(rng=random.Random(42))
     board = Board(3)
     board.place_mark(0, 0, "O")
     board.place_mark(1, 1, "O")
     before = str(board)
     ai.choose_move(board, "O")
     assert before == str(board)
+
+
 

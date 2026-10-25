@@ -24,6 +24,8 @@ class EasyAI(AIPlayer):
 
 class HardAI(AIPlayer):
     """Uses Minimax algorithm to pick a cell"""
+    def __init__(self, rng=None):
+        pass
 
     def choose_move(self, board, mark):
         board = board.copy()
