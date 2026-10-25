@@ -1,4 +1,3 @@
-import random
 from abc import ABC, abstractmethod
 
 
@@ -10,7 +9,7 @@ class AIPlayer(ABC):
         """Return a (row, col) tuple for an empty cell on the board."""
 
 
-class MediumAI(AIPlayer):
+class EasyAI(AIPlayer):
     """Picks any empty cell at random."""
 
     def __init__(self, rng=None):
@@ -53,10 +52,3 @@ class HardAI(AIPlayer):
             board.remove_mark(row, col)
         return max(scores) if is_maximizing else min(scores)
         
-
-
-class EasyAI(AIPlayer):
-    """Always picks the first empty cell. Predictable, so it is handy for testing."""
-
-    def choose_move(self, board, mark):
-        return board.empty_cells()[0]

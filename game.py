@@ -1,5 +1,5 @@
 from board import Board
-from ai import EasyAI
+
 class Game:
     def __init__(self, player1, player2, ai_player=None):
         self.player1 = player1

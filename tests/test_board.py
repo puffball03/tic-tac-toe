@@ -60,12 +60,18 @@ def test_if_board_is_full():
         (2,0),(2,1),(2,2)], mark="X")
     assert board.is_full() == True
 
-def test_if_board_is_not_full():
-    board = setup_board([
-        (0,0),(0,1),(0,2),
-        (1,0),(1,1),(1,2),
-        (2,0),(2,1)], mark="X")
-    assert board.is_full() == False
+def test_if_board_is_full_non_win():
+    board = Board(3)
+    board.place_mark(0, 0, "X")
+    board.place_mark(1, 0, "O")
+    board.place_mark(0, 1, "X")
+    board.place_mark(0, 2, "O")
+    board.place_mark(1, 2, "X")
+    board.place_mark(1, 1, "O")
+    board.place_mark(2, 0, "X")
+    board.place_mark(2, 1, "O")
+    board.place_mark(2, 2, "X")
+    assert board.is_full() == True
 
 def test_if_board_is_empty():
     board = Board(3)
