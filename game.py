@@ -38,10 +38,6 @@ class Game:
         else:
             return 0
 
-    def display_board(self):
-        #This is technically a print outside of the main.py, but it cleans up the main code.
-        print(self.board)
-
     def is_game_over(self, player):
         return self.board.has_won(player)
     def is_game_tied(self):

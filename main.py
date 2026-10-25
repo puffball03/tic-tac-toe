@@ -42,7 +42,7 @@ game = Game("X", "O", ai_player = choose_opponents())
 
 while True:
     print(f"\nIt is {game.turn}'s turn to move!")
-    game.display_board()
+    print(game.board)
     mark = game.turn
     if game.is_ai_turn():
         game.play_ai_move()
@@ -58,11 +58,11 @@ while True:
             continue
 
     if game.has_won(mark):
-        game.display_board()
+        print(game.board)
         print(f"{mark} has won the game!")
         break
     if game.is_game_tied():
-        game.display_board()
+        print(game.board)
         print("Cats Game! No one wins...")
         break
 
