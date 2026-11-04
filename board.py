@@ -11,6 +11,9 @@ class Board:
     def _in_range(self, row, col):
         return 0 <= row < self._size and 0 <= col < self._size
 
+    def cell_to_position(self, cell: int) -> tuple:
+        return divmod(cell - 1, self._size)
+
     def is_empty(self, row, col):
         if self._in_range(row, col) and self._grid[row][col] == EMPTY:
             return True
@@ -28,6 +31,10 @@ class Board:
         new_board = Board(self._size)
         new_board._grid = [row[:] for row in self._grid]
         return new_board
+    def example(self) -> str:
+        example_board = Board(self._size)
+        example_board._grid = [[str(row * self._size + col + 1) for col in range(self._size)] for row in range(self._size)]
+        return str(example_board)
     def place_mark(self, row: int, col: int, mark: str) -> bool:
         if self._in_range(row, col) and self.is_empty(row, col):
             self._grid[row][col] = mark
