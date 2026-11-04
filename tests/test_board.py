@@ -82,5 +82,53 @@ def test_if_board_is_empty():
                 any_cell_has_a_tile = True
     assert any_cell_has_a_tile == False
 
+@pytest.mark.parametrize("cell, position", [
+    (1, (0, 0)),
+    (2, (0, 1)),
+    (3, (0, 2)),
+    (4, (1, 0)),
+    (5, (1, 1)),
+    (6, (1, 2)),
+    (7, (2, 0)),
+    (8, (2, 1)),
+    (9, (2, 2)),
+])
+def test_cell_to_position(cell, position):
+    board = Board(3)
+    assert board.cell_to_position(cell) == position
+
+def test_cell_zero_is_illegal():
+    board = Board(3)
+    row, col = board.cell_to_position(0)
+    assert board.place_mark(row, col, "X") == False
+
+def test_cell_ten_is_illegal():
+    board = Board(3)
+    row, col = board.cell_to_position(10)
+    assert board.place_mark(row, col, "X") == False
+
+def test_cell_on_non_empty_space_is_illegal():
+    board = Board(3)
+    row, col = board.cell_to_position(5)
+    board.place_mark(row, col, "O")
+    assert board.place_mark(row, col, "X") == False
+
+def test_example_board_shows_digits():
+    board = Board(3)
+    assert board.example() == (
+        "1 | 2 | 3\n"
+        "--+---+--\n"
+        "4 | 5 | 6\n"
+        "--+---+--\n"
+        "7 | 8 | 9"
+    )
+
+def test_example_board_ignores_marks():
+    board = Board(3)
+    board.place_mark(1, 1, "X")
+    before = str(board)
+    assert "5" in board.example()
+    assert before == str(board)
+
 
 

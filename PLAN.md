@@ -15,6 +15,7 @@ ID| Type | What it describes | How to verify
 9 | Functional | The player can designate a board of any size at game creation | won't | Test boards with various sizes.
 10 | Functional | HardAI never loses when it plays second | should | Play a significant amount of games and ensure that HardAI always wins.
 11 | Functional | The game logic detects when a game has become a cats-game (tied) | Must | Test that tied game condition goes into effect during a cats game.
+12 | Functional | On their turn, a player is shown an example board with each cell numbered 1-9 and selects a cell by typing a single digit | Must | Test each digit maps to the correct cell, and test invalid digits in the game loop
 
 ## Components
 
@@ -42,5 +43,9 @@ Decided that variable board size is out of scope for this project. Requirements 
 
 Decided that, instead of creating separate AI classes for each difficulty, to instead create a parent AIAgent class that contains the blueprints for each AI difficulty class to inherit from.
 
+Decided that the cell number to (row, col) conversion and the example board belong in the Board class. main.py runs the game on import and can't be tested by pytest, and the Board already rejects out of range positions, so cell numbers outside of 1-9 are illegal moves without any extra checks. The example board is only printed on human turns, since the AI doesn't need it.
+
 ## What Changed
 I ended up abandoning the board of variable size requirements as it went against the rubric. I also decided to not implement a complicated mediumAI that would resist losing due to time constraints
+
+Players used to select a cell by typing its row and column. They now type a single cell number from 1-9, using an example board printed on their turn.

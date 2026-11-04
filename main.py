@@ -48,11 +48,13 @@ while True:
         game.play_ai_move()
         print(f"\nAI {mark} moved")
     else:
+        print(f"\nCell numbers:\n{game.board.example()}")
         try:
-            row, col = (int(x) - 1 for x in input("Enter the row(1-3), a space, then the column(1-3) where you would like to place your mark\nInput: ").split())
+            cell = int(input("Enter the cell number(1-9) where you would like to place your mark\nInput: "))
         except ValueError:
             print("You've typed an invalid move. Try again!\n")
             continue
+        row, col = game.board.cell_to_position(cell)
         if not game.play_move(row, col, mark):
             print("Illegal move. Please try again.")
             continue
